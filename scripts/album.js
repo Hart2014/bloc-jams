@@ -86,10 +86,9 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
      albumImage.addEventListener("click", function(event) {
          setCurrentAlbum(albums[index]);
-         idex++;
-        if (i = albums.length){
+         index++;
+        if (index == albums.length){
             index = 0;
         }
-    } 
     });
  };
