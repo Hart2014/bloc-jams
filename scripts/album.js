@@ -34,7 +34,7 @@
      artist: 'Johann Bach',
      label: 'Classic',
      year: '1720',
-     albumArtUrl: 'assets/images/album_covers/bach.png',
+     albumArtUrl: 'assets/images/album_covers/bach.jpg',
      songs: [
          { title: 'Song 1', duration: '1:01' },
          { title: 'Song 2', duration: '5:01' },
@@ -47,7 +47,7 @@
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
-      + '  <td class="song-item-number">' + songNumber + '</td>'
+      + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
       + '  <td class="song-item-duration">' + songLength + '</td>'
       + '</tr>'
@@ -77,9 +77,29 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
  };
+
+var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
+var songRows = document.getElementsByClassName('album-view-song-item');
+
+
+// Album button templates
+var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     songListContainer.addEventListener('mouseover', function(event) {
+         // Only target individual song rows during event delegation
+         if (event.target.parentElement.className === 'album-view-song-item') {
+             // Change the content from the number to the play button's HTML
+             event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+         }
+     });
+          for (var i = 0; i < songRows.length; i++) {
+         songRows[i].addEventListener('mouseleave', function(event) {
+             this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+         });
+     }
+     
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albums = [albumPicasso, albumMarconi, albumBach];
      var index = 1;
@@ -90,5 +110,5 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
         if (index == albums.length){
             index = 0;
         }
-    });
+     });
  };
