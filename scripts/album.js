@@ -53,7 +53,13 @@
       + '</tr>'
       ;
  
-     return $(template);
+     var $row = $(template);
+     
+     $row.find('.song-item-number').click(clickHandler);
+     
+     $row.hover(onHover, offHover);
+     
+     return $row;
  };
 
      var $albumTitle = $('.album-view-title');
@@ -74,8 +80,7 @@
      // #4
      for (var i = 0; i < album.songs.length; i++) {
          var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
-         $albumSongList.append($newRow);     
-     }
+         $albumSongList.append($newRow);     }
  };
 
 var findParentByClassName = function(element, targetClass) {
