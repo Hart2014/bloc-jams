@@ -1,0 +1,23 @@
+{
+  "name": "bloc-jams",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hart2014/bloc-jams.git"
+  },
+  "author": "Thom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hart2014/bloc-jams/issues"
+  },
+  "homepage": "https://github.com/Hart2014/bloc-jams#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
